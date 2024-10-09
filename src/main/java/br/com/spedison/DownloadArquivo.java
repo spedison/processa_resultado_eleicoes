@@ -27,7 +27,7 @@ public class DownloadArquivo {
     public boolean processa(Municipio m, Consumer<DadosJson> consumer) {
 
         try {
-            System.out.println("Baixando " + m.getNome());
+            // System.out.println("Baixando " + m.getNome());
 
             URL url1 = new URL(DadosEstruturais.url1.formatted(m.getId()));
             File out = Paths.get(DadosEstruturais.diretorioSaida, "download%3d.json".formatted(m.getId())).toFile();
@@ -71,6 +71,11 @@ public class DownloadArquivo {
                 .readAllLines(Path.of(".", "dados", "municipios.txt"))
                 .stream()
                 .map(Municipio::new)
+                .peek(k->{
+                    try{
+                        Thread.sleep(100);
+                    }catch (InterruptedException e) {}
+                })
                 .forEach(this::processa);
 
     }

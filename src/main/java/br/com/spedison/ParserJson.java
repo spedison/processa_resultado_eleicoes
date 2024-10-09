@@ -32,7 +32,8 @@ public class ParserJson {
                 quantVotos = Integer.parseInt(jsonContext.read("$.carg[0].agr[%d].par[0].cand[0].vap".formatted(cand)));
                 cand++;
                 if (nomeCandidato != null) {
-                    Candidato candi = new Candidato(nomeCandidato, quantVotos, dadosJson.getDadosArquivo(), dadosJson.getUrl());
+                    Candidato candi = new Candidato(nomeCandidato, quantVotos, dadosJson.getDadosArquivo(),
+                            dadosJson.getUrl(), dadosJson.getMunicipio(), dadosJson.getIdMunicipio());
                     result.add(candi);
                 } else {
                     break;
